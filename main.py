@@ -9,7 +9,10 @@ class Node:
             name: Student name
         """
         # Replace this code with your implementation
-        raise NotImplementedError
+        self.id = id
+        self.name = name
+        self.left = None
+        self.right = None
 
     def preorder(self) -> list[dict]:
         """Return preorder traversal as list of dicts.
@@ -57,7 +60,23 @@ class Tree:
             If id already exists, this operation should be ignored.
         """
         # Replace this code with your implementation
-        raise NotImplementedError
+        if self.root == None: #adds as the root if tree is empty
+            self.root = Node(id, name)
+        current_node = self.root
+        if self.find_node(id) != None: #checks if the node already exists
+            return
+        while True:
+            if id > current_node.id:
+                if current_node.right() == None:
+                    current_node.right = Node(id, name)
+                else:
+                    current_node = current_node.right
+            else: #if id is less than current_node.id
+                if current_node.left() == None:
+                    current_node.left = Node(id, name)
+                else:
+                    current_node = current_node.left
+
 
     def find_node(self, id: int):
         """Find a student node by ID.
@@ -69,7 +88,16 @@ class Tree:
             Node object if found, None otherwise
         """
         # Replace this code with your implementation
-        raise NotImplementedError
+        if self.root == None:
+            return None
+        current_node = self.root
+        while True:
+            if id == current_node.id:
+                return current_node
+            if id > current_node.id:
+                current_node = current_node.right
+            else:
+                current_node = current_node.left
 
     def preorder(self) -> list[dict]:
         """Return preorder traversal of tree.
