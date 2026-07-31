@@ -21,7 +21,15 @@ class Node:
             List of {id, name} dicts in preorder (root, left, right)
         """
         # Replace this code with your implementation
-        raise NotImplementedError
+        if self == None:
+            return []
+        preorder_list = []
+        preorder_list.append({"id": self.id, "name": self.name})
+        if self.left != None:
+            preorder_list + self.left.preorder()
+        if self.right != None:
+            preorder_list + self.right.preorder()
+        return preorder_list
 
     def inorder(self) -> list[dict]:
         """Return inorder traversal as list of dicts.
@@ -30,7 +38,13 @@ class Node:
             List of {id, name} dicts in inorder (left, root, right)
         """
         # Replace this code with your implementation
-        raise NotImplementedError
+        inorder_list = []
+        if self.left != None:
+            inorder_list + self.left.preorder()
+        inorder_list.append({"id": self.id, "name": self.name})
+        if self.right != None:
+            inorder_list + self.right.preorder()
+        return inorder_list
 
     def postorder(self) -> list[dict]:
         """Return postorder traversal as list of dicts.
@@ -43,7 +57,7 @@ class Node:
 
 
 class Tree:
-    """Binary search tree for storing and managing student records."""
+    """Binary search tree for storing ancurrent_noded managing student records."""
 
     def __init__(self):
         """Initialize an empty tree."""
@@ -114,14 +128,15 @@ class Tree:
         """
         # Replace this code with your implementation
         if self.root == None:
-            return None
+            return []
         current_node = self.root
         preorder_list = []
-        preorder_list.append({current_node.id, current_node.name})
+        preorder_list.append({"id": current_node.id, "name": current_node.name})
         if current_node.left != None:
             preorder_list + current_node.left.preorder()
         if current_node.right != None:
             preorder_list + current_node.right.preorder()
+        return preorder_list
 
     def inorder(self) -> list[dict]:
         """Return inorder traversal of tree.
@@ -130,7 +145,16 @@ class Tree:
             List of {id, name} dicts in inorder (left, root, right)
         """
         # Replace this code with your implementation
-        raise NotImplementedError
+        if self.root == None:
+            return []
+        current_node = self.root
+        inorder_list = []
+        if current_node.left != None:
+            inorder_list + current_node.left.preorder()
+        inorder_list.append({"id": current_node.id, "name": current_node.name})
+        if current_node.right != None:
+            inorder_list + current_node.right.preorder()
+        return inorder_list
 
     def postorder(self) -> list[dict]:
         """Return postorder traversal of tree.
