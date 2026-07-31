@@ -113,7 +113,15 @@ class Tree:
             List of {id, name} dicts in preorder (root, left, right)
         """
         # Replace this code with your implementation
-        raise NotImplementedError
+        if self.root == None:
+            return None
+        current_node = self.root
+        preorder_list = []
+        preorder_list.append({current_node.id, current_node.name})
+        if current_node.left != None:
+            preorder_list + current_node.left.preorder()
+        if current_node.right != None:
+            preorder_list + current_node.right.preorder()
 
     def inorder(self) -> list[dict]:
         """Return inorder traversal of tree.
