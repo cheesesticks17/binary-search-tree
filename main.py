@@ -67,13 +67,15 @@ class Tree:
             return
         while True:
             if id > current_node.id:
-                if current_node.right() == None:
+                if current_node.right == None:
                     current_node.right = Node(id, name)
+                    break
                 else:
                     current_node = current_node.right
             else: #if id is less than current_node.id
-                if current_node.left() == None:
+                if current_node.left == None:
                     current_node.left = Node(id, name)
+                    break
                 else:
                     current_node = current_node.left
 
@@ -95,9 +97,14 @@ class Tree:
             if id == current_node.id:
                 return current_node
             if id > current_node.id:
+                if current_node.right == None:
+                    break
                 current_node = current_node.right
             else:
+                if current_node.left == None:
+                    break
                 current_node = current_node.left
+        return None
 
     def preorder(self) -> list[dict]:
         """Return preorder traversal of tree.
